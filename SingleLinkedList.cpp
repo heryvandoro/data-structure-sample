@@ -61,6 +61,56 @@ void pushMid(int age, char name[]){
 	}
 }
 
+void popHead(){
+	current=head;
+	if(head==NULL){
+		printf("No data");
+	}else if(head==tail){
+		head=tail=NULL;
+		free(current);
+	}else{
+		head=head->next;
+		free(current);
+	}
+}
+
+void popTail(){
+	if(head==NULL){
+		printf("No data");
+	}else if(head==tail){
+		head=tail=NULL;
+		free(current);
+	}else{
+		human *temp=head;
+		while(temp->next!=tail){
+			temp=temp->next;
+		}
+		current=tail;
+		tail=temp;
+		free(current);
+		tail->next=NULL;
+	}
+}
+
+void popMid(int age){
+	current=head;
+	if(head==NULL){
+		printf("No data");
+	}else if(head->age==age){
+		popHead();
+	}else if(tail->age==age){
+		popTail();
+	}else{
+		human *temp=head;
+		while(temp->next->age!=age && temp!=tail){
+			temp=temp->next;
+		}
+		current=temp->next;
+		temp->next=temp->next->next;
+		free(current);
+	}
+}
+
 void print(){
 	current = head;
 	while(current != NULL){
@@ -72,10 +122,13 @@ void print(){
 int main(){
 	pushMid(18, "hery");
 	pushMid(17, "mahirkoding");
-	pushMid(22, "andi");
-	pushHead(22, "tono");
+	pushTail(22, "andi");
+	pushHead(15, "tono");
 	pushMid(11, "vandoro");
-	pushMid(22, "budi");
+	pushMid(23, "budi");
+	popHead();
+	popTail();
+	popMid(15);
 	print();
 	getchar();
 	return 0;
