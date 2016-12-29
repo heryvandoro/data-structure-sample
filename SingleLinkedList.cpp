@@ -111,6 +111,12 @@ void popMid(int age){
 	}
 }
 
+void popAll(){
+	while(head!=NULL){
+		popHead();
+	}
+}
+
 void print(){
 	current = head;
 	while(current != NULL){
@@ -129,6 +135,7 @@ int main(){
 	popHead();
 	popTail();
 	popMid(15);
+	//popAll();
 	print();
 	getchar();
 	return 0;
