@@ -36,9 +36,16 @@ void pushHead(char name[]){
 }
 
 void popHead(){
-	if(head!=NULL){
+	if(head==NULL){
+		printf("No Data");
+	}else if(head==tail){
+		current=head;
+		head=tail=NULL;
+		free(current);
+	}else{
 		current=head;
 		head=head->next;
+		head->prev=NULL;
 		free(current);
 	}
 }
