@@ -73,6 +73,7 @@ void popHead(){
 	}else{
 		current=head;
 		head=head->next;
+		head->prev=NULL;
 		free(current);
 	}
 }
@@ -87,6 +88,7 @@ void popTail(){
 	}else{
 		current=tail;
 		tail=tail->prev;
+		tail->next=NULL;
 		free(current);
 	}
 }
